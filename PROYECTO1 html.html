@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa de Empeño</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background-image: url('https://github.com/ANTONIO-ALI/PRESTAMOS-EFECTIVOS/raw/main/fondo.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      color: #333;
+    }
+    header, section, footer {
+      background: rgba(255, 255, 255, 0.95);
+      margin: 1rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header img {
+      max-width: 150px;
+      display: block;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .valores ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .valores li {
+      background: #eee;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+    }
+    .servicio {
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      background: #f0f0f0;
+      border-radius: 0.5rem;
+    }
+    .descripcion {
+      display: none;
+      padding: 0.5rem;
+      background: #fafafa;
+      border-left: 3px solid #999;
+      margin-top: 0.25rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    input, textarea, select, button {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .mensaje-exito {
+      display: none;
+      color: green;
+      margin-top: 0.5rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .valores ul {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head0q
+<body>
+  <header>
+    <img src="https://github.com/ANTONIO-ALI/PRESTAMOS-IMAGEN/raw/main/logo.png" alt="Logo Casa de Empeño" />
+    <h1>Casa de Empeño</h1>
+  </header>
+
+  <section>
+    <h2>¿Quiénes somos?</h2>
+    <p>Proveedores cuyo objeto de negocio consiste en otorgar una suma de dinero en efectivo a cambio de una prenda.</p>
+  </section>
+
+  <section>
+    <h2>Misión</h2>
+    <p>Apoyar a las familias a cumplir sus objetivos, mediante préstamos prendarios.</p>
+  </section>
+
+  <section>
+    <h2>Visión</h2>
+    <p>Ofrecer un buen servicio y resguardo de los productos de sus clientes, y ser reconocida como una organización financiera y prendaria.</p>
+  </section>
+
+  <section class="valores">
+    <h2>Valores</h2>
+    <ul>
+      <li>Honestidad</li>
+      <li>Compromiso</li>
+      <li>Responsabilidad</li>
+      <li>Empatía</li>
+      <li>Solidaridad</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Servicios</h2>
+    <div class="servicio" onclick="toggleDesc(this)">Empeño de Oro<div class="descripcion">Aceptamos oro en todas sus formas y quilates.</div></div>
+    <div class="servicio" onclick="toggleDesc(this)">Empeño de Plata<div class="descripcion">Prendas y artículos de plata.</div></div>
+    <div class="servicio" onclick="toggleDesc(this)">Empeño de Herramientas<div class="descripcion">Herramientas eléctricas, manuales y especializadas.</div></div>
+    <div class="servicio" onclick="toggleDesc(this)">Empeño de Electrónicos<div class="descripcion">Televisores, laptops, consolas, celulares.</div></div>
+    <div class="servicio" onclick="toggleDesc(this)">Empeño de Motos y Autos<div class="descripcion">Vehículos con papeles en regla.</div></div>
+  </section>
+
+  <section>
+    <h2>Formulario de Cotización</h2>
+    <form id="cotizacionForm">
+      <input type="text" name="nombre" placeholder="Nombre completo" required />
+      <input type="tel" name="whatsapp" placeholder="WhatsApp" required />
+      <select name="articulo" required>
+        <option value="">Selecciona el artículo</option>
+        <option value="Oro">Oro</option>
+        <option value="Plata">Plata</option>
+        <option value="Herramientas">Herramientas</option>
+        <option value="Electrónicos">Electrónicos</option>
+        <option value="Motos/Autos">Motos / Autos</option>
+      </select>
+      <textarea name="comentarios" placeholder="Comentarios adicionales"></textarea>
+      <button type="submit">Enviar cotización</button>
+      <div class="mensaje-exito" id="mensajeExito">
+        ✅ Gracias, tu articulo está en proceso de cotización.<br>
+        ⏳ Redirigiendo al inicio...<br>
+        🎉 Te contactaremos pronto.
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <p style="text-align:center">&copy; 2025 Casa de Empeño. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function toggleDesc(element) {
+      const desc = element.querySelector('.descripcion');
+      desc.style.display = desc.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.getElementById('cotizacionForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        nombre: form.nombre.value,
+        whatsapp: form.whatsapp.value,
+        articulo: form.articulo.value,
+        comentarios: form.comentarios.value
+      };
+
+      await fetch('https://script.google.com/macros/s/AKfycbwqkIOnrvtAlrmEtrGKkGku2HvRWF5fkBIkEIxtMuOcVLEMJiTs28IfXWPCAhge6m1Kow/exec', {
+        method: 'POST',
+        body: new URLSearchParams(data)
+      });
+
+      const msg = document.getElementById('mensajeExito');
+      msg.style.display = 'block';
+      form.reset();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => msg.style.display = 'none', 5000);
+    });
+  </script>
+</body>
+</html>
